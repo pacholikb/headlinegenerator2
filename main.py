@@ -5,7 +5,7 @@ import openai
 import pandas as pd
 import os
 
-openai.api_key = st.secrets['OPENAI_API_KEY']
+openai.api_key = st.secrets["secrets"]['OPENAI_API_KEY']
 
 def get_profile_id(url):
     # Updated regex to account for optional country code, optional 'www.', and optional trailing slash
