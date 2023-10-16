@@ -40,14 +40,14 @@ def app():
                 "recommendations": False,
                 "related_profiles": False
             }
+            st.toast("Fetching profile details...", icon="🔄")
             try:
-                response = requests.post(url, json=data, headers=headers)
-                response.raise_for_status()
-                profile_info = response.json()
+                    response = requests.post(url, json=data, headers=headers)
+                    response.raise_for_status()
+                    profile_info = response.json()
             except requests.exceptions.RequestException as e:
-                st.error(f"Error: {e}")
-                return
-
+                    st.error(f"Error: {e}")
+                    return
             try:
                 name = f"{profile_info['first_name']} {profile_info['last_name']}"
             except KeyError:
@@ -85,6 +85,8 @@ def app():
                     "X-RapidAPI-Key": "9c1847dc95msh72942d9ba1779e6p14cfc2jsn060cb7a3a6b0",
                     "X-RapidAPI-Host": "linkedin-company-data.p.rapidapi.com"
                 }
+
+                st.toast("Fetching company info...", icon="🔄")
                 try:
                     response = requests.post(url, json=payload, headers=headers)
                     response.raise_for_status()
@@ -176,6 +178,7 @@ def app():
             # Generate new LinkedIn headline            
             if st.button('Generate Headlines', key=None, help=None):
                 prompt = f"Generate exactly 9 distinct headlines for a LinkedIn profile based on the provided format and criteria. There should be no additional labels, groupings, or options. Just a numbered list from 1 to 9. Format: Title at Company | Benefit-oriented statement | Big accomplishment (if available) | Top Keyword #1 | Top Keyword #2.  Context: - Title at Company: {title_and_company} - Who is helped: {who_help} - What they help accomplish: {what_help} - Relevant keywords: {related_keywords}. For headline results 1-3, use a Professional tone. For headline results 4-6, use a Casual tone and for headlines 7-9 use a Fun tone with emojis. Each headline must be under 220 characters. Your output should be a numbered list of headlines 9 in total. "
+                st.toast("Generating headlines...", icon="🔄")
                 try:
                     response = openai.ChatCompletion.create(
                         model="gpt-4",
