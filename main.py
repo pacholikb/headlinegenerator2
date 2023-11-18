@@ -122,7 +122,7 @@ def app():
                     prompt = f"Your job is to identify who this company helps, who are they serving, return only the name for that group in 10 words or less. Context: {company_info['results'][0]['description']}"
                     try:
                         response = openai.ChatCompletion.create(
-                            model="gpt-4",
+                            model="gpt-3.5-turbo",
                             messages=[
                                 {"role": "system", "content": "You are a helpful assistant."},
                                 {"role": "user", "content": prompt}
@@ -137,7 +137,7 @@ def app():
                     prompt = f"Your job is to identify what this company does for their clients, summarize their solution in 10 words or less. Context: {company_info['results'][0]['description']}"
                     try:
                         response = openai.ChatCompletion.create(
-                            model="gpt-4",
+                            model="gpt-3.5-turbo",
                             messages=[
                                 {"role": "system", "content": "You are a helpful assistant."},
                                 {"role": "user", "content": prompt}
@@ -153,7 +153,7 @@ def app():
                         prompt = f"Identify 3 of the top keywords that would be an accurate descriptor of what the company does and are terms most likely to be searched for by something looking for those services. Return only those keywords no explanation. Context: {company_info['results'][0]['description']} {', '.join(company_info['results'][0]['specialties'])}"
                         try:
                             response = openai.ChatCompletion.create(
-                                model="gpt-4",
+                                model="gpt-3.5-turbo",
                                 messages=[
                                     {"role": "system", "content": "You are a helpful assistant."},
                                     {"role": "user", "content": prompt}
@@ -181,7 +181,7 @@ def app():
                 st.toast("Generating headlines...", icon="🔄")
                 try:
                     response = openai.ChatCompletion.create(
-                        model="gpt-4",
+                        model="gpt-3.5-turbo",
                         messages=[
                             {"role": "system", "content": "You are a helpful assistant."},
                             {"role": "user", "content": prompt}
